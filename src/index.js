@@ -5,13 +5,23 @@ const onClickAdd = () => {
   const inputText = document.getElementById("js-add-txt").value;
   document.getElementById("js-add-txt").value = "";
 
+  createIncompleteList(inputText);
+};
+
+//未完了リストから指定の要素を削除する関数
+const deleteFromIncompleteList = (target) => {
+  document.getElementById("js-incomplete-lists").removeChild(target);
+};
+
+//未完了リストに追加する関数
+const createIncompleteList = (text) => {
   //li生成
   const li = document.createElement("li");
   li.className = "flex-box";
 
   //p生成
   const p = document.createElement("p");
-  p.innerText = inputText;
+  p.innerText = text;
 
   //button(完了)生成
   const completeButton = document.createElement("button");
@@ -37,6 +47,17 @@ const onClickAdd = () => {
     //button生成
     const backButton = document.createElement("button");
     backButton.innerText = "戻す";
+    backButton.addEventListener("click", () => {
+      //押された戻すボタンの親タグ(li)
+      const deleteTarget = backButton.parentNode;
+      document.getElementById("js-complete-lists").removeChild(deleteTarget);
+      // deleteFromCompleteList(backButton.parentNode);
+      // document.getElementById("js-incomplete-lists").appendChild(li);
+
+      //テキスト取得
+      const text = backButton.parentNode.firstElementChild.innerText;
+      createIncompleteList(text);
+    });
 
     //liタグの子要素に各子要素をを追加
     addTarget.appendChild(p);
@@ -63,11 +84,6 @@ const onClickAdd = () => {
   li.appendChild(deleteButton);
   //未完了リストに追加
   document.getElementById("js-incomplete-lists").appendChild(li);
-};
-
-//未完了リストから指定の要素を削除する関数
-const deleteFromIncompleteList = (target) => {
-  document.getElementById("js-incomplete-lists").removeChild(target);
 };
 
 document
