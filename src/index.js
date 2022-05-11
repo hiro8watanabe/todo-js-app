@@ -51,8 +51,6 @@ const createIncompleteList = (text) => {
       //押された戻すボタンの親タグ(li)
       const deleteTarget = backButton.parentNode;
       document.getElementById("js-complete-lists").removeChild(deleteTarget);
-      // deleteFromCompleteList(backButton.parentNode);
-      // document.getElementById("js-incomplete-lists").appendChild(li);
 
       //テキスト取得
       const text = backButton.parentNode.firstElementChild.innerText;
@@ -78,7 +76,7 @@ const createIncompleteList = (text) => {
     // document.getElementById("js-incomplete-lists").removeChild(deleteTarget);
   });
 
-  //liタグのｐ子要素に各要素を設定
+  //liタグの子要素に各要素を設定
   li.appendChild(p);
   li.appendChild(completeButton);
   li.appendChild(deleteButton);
@@ -89,3 +87,10 @@ const createIncompleteList = (text) => {
 document
   .getElementById("js-add-btn")
   .addEventListener("click", () => onClickAdd());
+
+// まとめ
+// createElement：エレメントを生成
+// parentNode：親要素を取得
+// appendChild：子要素に追加
+// removeChild：子要素を削除
+// innerText：要素内のテキスト
